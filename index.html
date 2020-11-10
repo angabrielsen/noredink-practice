@@ -19,10 +19,21 @@
 <div id="elm-app-is-loaded-here"></div>
 
 <script src="elm.js"></script>
+<script src="libraries/PapaParse-5.0.2/papaparse.min.js"></script>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+
 <script>
+    var file = "./MOCK_DATA.csv"
+
+    let mockData =
+        jQuery.get(file, function (data) {
+            var mockData = Papa.parse(data);
+            console.log(mockData.data);
+        });
+
     var app = Elm.HomePage.init({
         node: document.getElementById("elm-app-is-loaded-here"),
-        flags: "./MOCK_DATA.csv"
+        flags: mockData
     });
 </script>
 </body>
