@@ -4,12 +4,13 @@ import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import ScoresTable exposing (showScoresTable)
+import TestChooser exposing (viewTestChooser)
 
 view : Model -> Html Msg
 view model =
     div []
         [ div [ class "test-chooser" ]
-            [ p [] [ text "Choose a test" ] ]
+            [ viewTestChooser ]
         , div [ class "test-results"]
             [ showScoresTable model.mockData ]
         ]
@@ -23,9 +24,12 @@ main =
         , subscriptions = subscriptions
         }
 
-type alias Model = { mockData : List StudentRecord }
-type alias StudentRecord = {
-    first_name : String
+type alias Model =
+    { mockData : List StudentRecord }
+
+
+type alias StudentRecord =
+    { first_name : String
     , last_name : String
     , possible_points : String
     , earned_points : String
