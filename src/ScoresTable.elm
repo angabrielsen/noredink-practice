@@ -12,10 +12,16 @@ type alias StudentRecord = {
 
 showScoresTable : List StudentRecord -> Html msg
 showScoresTable mockData =
-    div [ class "class-scores" ]
-        [ table []
-            ([viewTableHeader] ++ List.map viewRecord mockData)
-        ]
+    div []
+        [ div [ class "jumbotron" ]
+            [ h1 [] [ text "Test Title "]
+            , viewClassAverage mockData ]
+        , div [ class "class-scores" ]
+            [ table []
+                ([viewTableHeader] ++ List.map viewRecord mockData)
+                ]
+            ]
+
 
 viewClassAverage : List StudentRecord -> Html msg
 viewClassAverage records =
