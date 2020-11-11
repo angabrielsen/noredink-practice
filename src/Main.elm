@@ -1,9 +1,9 @@
-module Main exposing (main, Model)
+module Main exposing (main, Model, StudentRecord)
 
 import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import ScoresTable exposing (showScoresTable, viewClassAverage)
+import ScoresTable exposing (showScoresTable)
 
 view : Model -> Html Msg
 view model =
@@ -29,6 +29,7 @@ type alias StudentRecord = {
     , last_name : String
     , possible_points : String
     , earned_points : String
+    , test_title : String
     }
 
 init : List StudentRecord -> ( Model, Cmd Msg )
