@@ -15,10 +15,10 @@ view model =
         , div [] [
             p [] [ text "A description will go here." ]
         ]
-        , showScoresTable model.mockData
+        , showScoresTable
         ]
 
-main : Program String Model Msg
+main : Program (List StudentRecord) Model Msg
 main =
     Browser.element
         { init = init
@@ -27,11 +27,17 @@ main =
         , subscriptions = subscriptions
         }
 
-type alias Model = { mockData : String }
+type alias Model = { mockData : List StudentRecord }
+type alias StudentRecord = {
+    first_name : String
+    , last_name : String
+    , possible_points : String
+    , earned_points : String
+    }
 
-init : String -> ( Model, Cmd Msg )
+init : List StudentRecord -> ( Model, Cmd Msg )
 init mockData =
-    ( { mockData = mockData}
+    ( { mockData = mockData }
     , Cmd.none
     )
 

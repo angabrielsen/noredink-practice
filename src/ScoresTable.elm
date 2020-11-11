@@ -3,8 +3,7 @@ module ScoresTable exposing (showScoresTable)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
-showScoresTable : String -> Html msg
-showScoresTable mockdata =
+showScoresTable =
     div []
         [ table [ id "class-scores" ]
             [ tr []
@@ -16,5 +15,5 @@ showScoresTable mockdata =
                 ]
             ]
         , div []
-            [ text mockdata ]
+            [ text "mockdata" ]
         ]

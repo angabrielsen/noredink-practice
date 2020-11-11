@@ -28,14 +28,16 @@
     var mockDataFile =
         jQuery.get(file, function (data) {
             Papa.parse(data, {
+                header: true,
                 complete: function(results) {
                     setFlags(results.data);
+                    console.log(results.data);
                 }
             });
         });
 
     function setFlags(data) {
-        mockDataFlag = JSON.stringify(data);
+        mockDataFlag = data;
 
         var app = Elm.HomePage.init({
             node: document.getElementById("elm-app-is-loaded-here"),
