@@ -1,4 +1,4 @@
-module ScoresTable exposing (showScoresTable, viewClassAverage)
+module ScoresTable exposing (showScoresTable, StudentRecord)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -8,14 +8,34 @@ type alias StudentRecord = {
     , last_name : String
     , possible_points : String
     , earned_points : String
+    , test_title : String
     }
 
 showScoresTable : List StudentRecord -> Html msg
-showScoresTable mockData =
-    div [ class "class-scores" ]
-        [ table []
-            ([viewTableHeader] ++ List.map viewRecord mockData)
-        ]
+showScoresTable records =
+    let
+        testTitle =
+            records
+                |> List.head
+                |> Maybe.withDefault {
+                     first_name = ""
+                     , last_name = ""
+                     , possible_points = ""
+                     , earned_points = ""
+                     , test_title = ""
+                 }
+                |> (\record -> record.test_title)
+    in
+    div []
+        [ div [ class "jumbotron" ]
+            [ h1 [] [ text testTitle ]
+            , viewClassAverage records ]
+        , div [ class "class-scores" ]
+            [ table []
+                ([viewTableHeader] ++ List.map viewRecord records)
+                ]
+            ]
+
 
 viewClassAverage : List StudentRecord -> Html msg
 viewClassAverage records =
@@ -46,26 +66,26 @@ viewTableHeader =
         ]
 
 viewRecord : StudentRecord -> Html msg
-viewRecord records =
+viewRecord record =
     let
         earned_points =
-            toFloat((String.toInt(records.earned_points) |> Maybe.withDefault 0))
+            toFloat((String.toInt(record.earned_points) |> Maybe.withDefault 0))
 
         possible_points =
-            toFloat((String.toInt(records.possible_points) |> Maybe.withDefault 0))
+            toFloat((String.toInt(record.possible_points) |> Maybe.withDefault 0))
 
         average =
             String.fromFloat((earned_points / possible_points) * 100)
     in
     tr []
         [ td []
-            [ text records.first_name ]
+            [ text record.first_name ]
         , td []
-            [ text records.last_name ]
+            [ text record.last_name ]
         , td []
-            [ text records.possible_points ]
+            [ text record.possible_points ]
         , td []
-            [ text records.earned_points ]
+            [ text record.earned_points ]
         , td []
             [ text (average ++ "%") ]
         ]
