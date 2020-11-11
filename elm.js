@@ -5177,11 +5177,30 @@ var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $elm$html$Html$p = _VirtualDom_node('p');
 var $elm$html$Html$table = _VirtualDom_node('table');
+var $elm$core$String$fromFloat = _String_fromNumber;
 var $elm$html$Html$td = _VirtualDom_node('td');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $elm$html$Html$tr = _VirtualDom_node('tr');
-var $author$project$ScoresTable$viewRecord = function (post) {
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $author$project$ScoresTable$viewRecord = function (records) {
+	var possible_points = A2(
+		$elm$core$Maybe$withDefault,
+		0,
+		$elm$core$String$toInt(records.possible_points));
+	var earned_points = A2(
+		$elm$core$Maybe$withDefault,
+		0,
+		$elm$core$String$toInt(records.earned_points));
+	var average = $elm$core$String$fromFloat((earned_points / possible_points) * 100);
 	return A2(
 		$elm$html$Html$tr,
 		_List_Nil,
@@ -5192,28 +5211,35 @@ var $author$project$ScoresTable$viewRecord = function (post) {
 				_List_Nil,
 				_List_fromArray(
 					[
-						$elm$html$Html$text(post.first_name)
+						$elm$html$Html$text(records.first_name)
 					])),
 				A2(
 				$elm$html$Html$td,
 				_List_Nil,
 				_List_fromArray(
 					[
-						$elm$html$Html$text(post.last_name)
+						$elm$html$Html$text(records.last_name)
 					])),
 				A2(
 				$elm$html$Html$td,
 				_List_Nil,
 				_List_fromArray(
 					[
-						$elm$html$Html$text(post.possible_points)
+						$elm$html$Html$text(records.possible_points)
 					])),
 				A2(
 				$elm$html$Html$td,
 				_List_Nil,
 				_List_fromArray(
 					[
-						$elm$html$Html$text(post.earned_points)
+						$elm$html$Html$text(records.earned_points)
+					])),
+				A2(
+				$elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text(average + '%')
 					]))
 			]));
 };
@@ -5250,6 +5276,13 @@ var $author$project$ScoresTable$viewTableHeader = A2(
 			_List_fromArray(
 				[
 					$elm$html$Html$text('Earned Points')
+				])),
+			A2(
+			$elm$html$Html$th,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text('Average')
 				]))
 		]));
 var $author$project$ScoresTable$showScoresTable = function (mockData) {
@@ -5265,6 +5298,43 @@ var $author$project$ScoresTable$showScoresTable = function (mockData) {
 					_List_fromArray(
 						[$author$project$ScoresTable$viewTableHeader]),
 					A2($elm$core$List$map, $author$project$ScoresTable$viewRecord, mockData)))
+			]));
+};
+var $elm$core$List$sum = function (numbers) {
+	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
+};
+var $author$project$ScoresTable$viewClassAverage = function (records) {
+	var allEarnedPoints = $elm$core$List$sum(
+		A2(
+			$elm$core$List$map,
+			function (record) {
+				return A2(
+					$elm$core$Maybe$withDefault,
+					0,
+					$elm$core$String$toInt(record.earned_points));
+			},
+			records));
+	var classAverage = (allEarnedPoints / $elm$core$List$length(records)) | 0;
+	return A2(
+		$elm$html$Html$div,
+		_List_Nil,
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$p,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Class average:')
+					])),
+				A2(
+				$elm$html$Html$h1,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text(
+						$elm$core$String$fromInt(classAverage) + '%')
+					]))
 			]));
 };
 var $author$project$HomePage$view = function (model) {
@@ -5288,13 +5358,7 @@ var $author$project$HomePage$view = function (model) {
 							[
 								$elm$html$Html$text('This will show test data!')
 							])),
-						A2(
-						$elm$html$Html$p,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$elm$html$Html$text('But first, some CSV parsing')
-							]))
+						$author$project$ScoresTable$viewClassAverage(model.mockData)
 					])),
 				A2(
 				$elm$html$Html$div,

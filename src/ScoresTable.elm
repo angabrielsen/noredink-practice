@@ -1,7 +1,6 @@
-module ScoresTable exposing (showScoresTable)
+module ScoresTable exposing (showScoresTable, viewClassAverage)
 
 import Html exposing (..)
-import Html.Attributes exposing (..)
 
 type alias StudentRecord = {
     first_name : String
@@ -17,6 +16,19 @@ showScoresTable mockData =
             ([viewTableHeader] ++ List.map viewRecord mockData)
         ]
 
+viewClassAverage : List StudentRecord -> Html msg
+viewClassAverage records =
+    let
+        allEarnedPoints =
+            List.sum (List.map (\record -> String.toInt(record.earned_points) |> Maybe.withDefault 0) records)
+
+        classAverage =
+            allEarnedPoints // (List.length records)
+    in
+    div []
+        [ p [] [ text "Class average:"]
+        , h1 [] [ text ((String.fromInt(classAverage)) ++ "%") ] ]
+
 viewTableHeader : Html msg
 viewTableHeader =
     tr []
@@ -28,17 +40,31 @@ viewTableHeader =
             [ text "Possible Points" ]
         , th []
             [ text "Earned Points" ]
+        , th []
+            [ text "Average" ]
         ]
 
 viewRecord : StudentRecord -> Html msg
-viewRecord post =
+viewRecord records =
+    let
+        earned_points =
+            toFloat((String.toInt(records.earned_points) |> Maybe.withDefault 0))
+
+        possible_points =
+            toFloat((String.toInt(records.possible_points) |> Maybe.withDefault 0))
+
+        average =
+            String.fromFloat((earned_points / possible_points) * 100)
+    in
     tr []
         [ td []
-            [ text post.first_name ]
+            [ text records.first_name ]
         , td []
-            [ text post.last_name ]
+            [ text records.last_name ]
         , td []
-            [ text post.possible_points ]
+            [ text records.possible_points ]
         , td []
-            [ text post.earned_points ]
+            [ text records.earned_points ]
+        , td []
+            [ text (average ++ "%") ]
         ]

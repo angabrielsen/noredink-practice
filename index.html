@@ -31,7 +31,6 @@
                 header: true,
                 complete: function(results) {
                     setFlags(results.data);
-                    console.log(results.data);
                 }
             });
         });
@@ -43,7 +42,6 @@
             node: document.getElementById("elm-app-is-loaded-here"),
             flags: mockDataFlag
         });
-        console.log("This is the mockDataFlag: " + mockDataFlag);
     }
 </script>
 </body>

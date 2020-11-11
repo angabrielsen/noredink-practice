@@ -3,7 +3,7 @@ module HomePage exposing (main, Model)
 import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import ScoresTable exposing (showScoresTable)
+import ScoresTable exposing (showScoresTable, viewClassAverage)
 
 view : Model -> Html Msg
 view model =
@@ -11,7 +11,7 @@ view model =
         [
         div [ class "jumbotron" ]
             [ h1 [] [ text "This will show test data!" ]
-            , p [] [ text "But first, some CSV parsing" ]
+            , viewClassAverage model.mockData
             ]
         , div [] [
             p [] [ text "A description will go here." ]
