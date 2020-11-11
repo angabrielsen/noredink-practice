@@ -5175,7 +5175,6 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
-var $elm$html$Html$p = _VirtualDom_node('p');
 var $elm$html$Html$table = _VirtualDom_node('table');
 var $elm$core$String$fromFloat = _String_fromNumber;
 var $elm$html$Html$td = _VirtualDom_node('td');
@@ -5288,7 +5287,10 @@ var $author$project$ScoresTable$viewTableHeader = A2(
 var $author$project$ScoresTable$showScoresTable = function (mockData) {
 	return A2(
 		$elm$html$Html$div,
-		_List_Nil,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('class-scores')
+			]),
 		_List_fromArray(
 			[
 				A2(
@@ -5300,6 +5302,7 @@ var $author$project$ScoresTable$showScoresTable = function (mockData) {
 					A2($elm$core$List$map, $author$project$ScoresTable$viewRecord, mockData)))
 			]));
 };
+var $elm$html$Html$p = _VirtualDom_node('p');
 var $elm$core$List$sum = function (numbers) {
 	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
 };
@@ -5356,22 +5359,9 @@ var $author$project$HomePage$view = function (model) {
 						_List_Nil,
 						_List_fromArray(
 							[
-								$elm$html$Html$text('This will show test data!')
+								$elm$html$Html$text('A Tale of Two Cities Chapter Test')
 							])),
 						$author$project$ScoresTable$viewClassAverage(model.mockData)
-					])),
-				A2(
-				$elm$html$Html$div,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$elm$html$Html$p,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$elm$html$Html$text('A description will go here.')
-							]))
 					])),
 				$author$project$ScoresTable$showScoresTable(model.mockData)
 			]));

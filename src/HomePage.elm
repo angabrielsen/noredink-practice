@@ -10,12 +10,9 @@ view model =
     div []
         [
         div [ class "jumbotron" ]
-            [ h1 [] [ text "This will show test data!" ]
+            [ h1 [] [ text "A Tale of Two Cities Chapter Test" ]
             , viewClassAverage model.mockData
             ]
-        , div [] [
-            p [] [ text "A description will go here." ]
-        ]
         , showScoresTable model.mockData
         ]
 

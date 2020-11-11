@@ -1,6 +1,7 @@
 module ScoresTable exposing (showScoresTable, viewClassAverage)
 
 import Html exposing (..)
+import Html.Attributes exposing (..)
 
 type alias StudentRecord = {
     first_name : String
@@ -11,7 +12,7 @@ type alias StudentRecord = {
 
 showScoresTable : List StudentRecord -> Html msg
 showScoresTable mockData =
-    div []
+    div [ class "class-scores" ]
         [ table []
             ([viewTableHeader] ++ List.map viewRecord mockData)
         ]
