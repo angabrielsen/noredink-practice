@@ -25,16 +25,24 @@
 <script>
     var file = "./MOCK_DATA.csv"
 
-    let mockData =
+    var mockDataFile =
         jQuery.get(file, function (data) {
-            var mockData = Papa.parse(data);
-            console.log(mockData.data);
+            Papa.parse(data, {
+                complete: function(results) {
+                    setFlags(results.data);
+                }
+            });
         });
 
-    var app = Elm.HomePage.init({
-        node: document.getElementById("elm-app-is-loaded-here"),
-        flags: mockData
-    });
+    function setFlags(data) {
+        mockDataFlag = JSON.stringify(data);
+
+        var app = Elm.HomePage.init({
+            node: document.getElementById("elm-app-is-loaded-here"),
+            flags: mockDataFlag
+        });
+        console.log("This is the mockDataFlag: " + mockDataFlag);
+    }
 </script>
 </body>
 </html>
