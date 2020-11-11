@@ -1,4 +1,4 @@
-module HomePage exposing (main, Model)
+module Main exposing (main, Model)
 
 import Browser
 import Html exposing (..)
