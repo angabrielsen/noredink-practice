@@ -5176,75 +5176,97 @@ var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $elm$html$Html$p = _VirtualDom_node('p');
-var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$table = _VirtualDom_node('table');
 var $elm$html$Html$td = _VirtualDom_node('td');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $elm$html$Html$tr = _VirtualDom_node('tr');
-var $author$project$ScoresTable$showScoresTable = A2(
-	$elm$html$Html$div,
+var $author$project$ScoresTable$viewRecord = function (post) {
+	return A2(
+		$elm$html$Html$tr,
+		_List_Nil,
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text(post.first_name)
+					])),
+				A2(
+				$elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text(post.last_name)
+					])),
+				A2(
+				$elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text(post.possible_points)
+					])),
+				A2(
+				$elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text(post.earned_points)
+					]))
+			]));
+};
+var $elm$html$Html$th = _VirtualDom_node('th');
+var $author$project$ScoresTable$viewTableHeader = A2(
+	$elm$html$Html$tr,
 	_List_Nil,
 	_List_fromArray(
 		[
 			A2(
-			$elm$html$Html$table,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$id('class-scores')
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$tr,
-					_List_Nil,
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$td,
-							_List_Nil,
-							_List_fromArray(
-								[
-									$elm$html$Html$text('Ashton')
-								])),
-							A2(
-							$elm$html$Html$td,
-							_List_Nil,
-							_List_fromArray(
-								[
-									$elm$html$Html$text('Gabrielsen')
-								])),
-							A2(
-							$elm$html$Html$td,
-							_List_Nil,
-							_List_fromArray(
-								[
-									$elm$html$Html$text('100')
-								])),
-							A2(
-							$elm$html$Html$td,
-							_List_Nil,
-							_List_fromArray(
-								[
-									$elm$html$Html$text('80')
-								])),
-							A2(
-							$elm$html$Html$td,
-							_List_Nil,
-							_List_fromArray(
-								[
-									$elm$html$Html$text('80%')
-								]))
-						]))
-				])),
-			A2(
-			$elm$html$Html$div,
+			$elm$html$Html$th,
 			_List_Nil,
 			_List_fromArray(
 				[
-					$elm$html$Html$text('mockdata')
+					$elm$html$Html$text('First Name')
+				])),
+			A2(
+			$elm$html$Html$th,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text('Last Name')
+				])),
+			A2(
+			$elm$html$Html$th,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text('Possible Points')
+				])),
+			A2(
+			$elm$html$Html$th,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text('Earned Points')
 				]))
 		]));
+var $author$project$ScoresTable$showScoresTable = function (mockData) {
+	return A2(
+		$elm$html$Html$div,
+		_List_Nil,
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$table,
+				_List_Nil,
+				_Utils_ap(
+					_List_fromArray(
+						[$author$project$ScoresTable$viewTableHeader]),
+					A2($elm$core$List$map, $author$project$ScoresTable$viewRecord, mockData)))
+			]));
+};
 var $author$project$HomePage$view = function (model) {
 	return A2(
 		$elm$html$Html$div,
@@ -5287,7 +5309,7 @@ var $author$project$HomePage$view = function (model) {
 								$elm$html$Html$text('A description will go here.')
 							]))
 					])),
-				$author$project$ScoresTable$showScoresTable
+				$author$project$ScoresTable$showScoresTable(model.mockData)
 			]));
 };
 var $author$project$HomePage$main = $elm$browser$Browser$element(

@@ -5,6 +5,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import ScoresTable exposing (showScoresTable)
 
+view : Model -> Html Msg
 view model =
     div []
         [
@@ -15,7 +16,7 @@ view model =
         , div [] [
             p [] [ text "A description will go here." ]
         ]
-        , showScoresTable
+        , showScoresTable model.mockData
         ]
 
 main : Program (List StudentRecord) Model Msg

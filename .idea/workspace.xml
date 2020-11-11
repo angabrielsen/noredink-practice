@@ -3,13 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="2f00b4c1-3360-4f59-954d-6f7b332b30f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elm-stuff/0.19.1/HomePage.elmi" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/0.19.1/HomePage.elmi" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elm-stuff/0.19.1/HomePage.elmo" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/0.19.1/HomePage.elmo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elm-stuff/0.19.1/ScoresTable.elmi" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/0.19.1/ScoresTable.elmi" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elm-stuff/0.19.1/ScoresTable.elmo" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/0.19.1/ScoresTable.elmo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elm-stuff/0.19.1/d.dat" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/0.19.1/d.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elm.js" beforeDir="false" afterPath="$PROJECT_DIR$/elm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/HomePage.elm" beforeDir="false" afterPath="$PROJECT_DIR$/src/HomePage.elm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ScoresTable.elm" beforeDir="false" afterPath="$PROJECT_DIR$/src/ScoresTable.elm" afterDir="false" />
     </list>
@@ -85,6 +83,10 @@
       <screen x="-884" y="-1440" width="3440" height="1440" />
     </state>
     <state x="-516" y="-1081" key="SettingsEditor/0.0.1440.900/-884.-1440.3440.1440@-884.-1440.3440.1440" timestamp="1605052021363" />
+    <state x="199" y="369" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605069405686">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="199" y="369" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1605069405686" />
     <state x="-360" y="-1109" width="670" height="676" key="search.everywhere.popup" timestamp="1605040800556">
       <screen x="-884" y="-1440" width="3440" height="1440" />
     </state>
