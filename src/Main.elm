@@ -11,11 +11,7 @@ view model =
         [ div [ class "test-chooser" ]
             [ p [] [ text "Choose a test" ] ]
         , div [ class "test-results"]
-            [ div [ class "jumbotron" ]
-                [ h1 [] [ text "A Tale of Two Cities Chapter Test" ]
-                , viewClassAverage model.mockData
-                ]
-                , showScoresTable model.mockData ]
+            [ showScoresTable model.mockData ]
         ]
 
 main : Program (List StudentRecord) Model Msg
