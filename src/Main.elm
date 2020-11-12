@@ -34,7 +34,7 @@ showScoresTable model =
 
 
         testTitle =
-            model.mockData
+            records
                 |> List.head
                 |> Maybe.withDefault {
                      first_name = ""
@@ -49,7 +49,7 @@ showScoresTable model =
     div []
         [ div [ class "jumbotron" ]
             [ h1 [] [ text testTitle ]
-            , viewClassAverage model.mockData ]
+            , viewClassAverage records ]
         , div [ class "class-scores" ]
             [ table []
                 ([viewTableHeader] ++ List.map viewRecord records)

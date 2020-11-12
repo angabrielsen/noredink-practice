@@ -10980,13 +10980,6 @@ var $author$project$Main$viewTableHeader = A2(
 				]))
 		]));
 var $author$project$Main$showScoresTable = function (model) {
-	var testTitle = function (record) {
-		return record.test_title;
-	}(
-		A2(
-			$elm$core$Maybe$withDefault,
-			{earned_points: '', first_name: '', last_name: '', possible_points: '', test_id: '', test_title: ''},
-			$elm$core$List$head(model.mockData)));
 	var records = function () {
 		var _v0 = model.whichTest;
 		switch (_v0) {
@@ -11020,6 +11013,13 @@ var $author$project$Main$showScoresTable = function (model) {
 					model.mockData);
 		}
 	}();
+	var testTitle = function (record) {
+		return record.test_title;
+	}(
+		A2(
+			$elm$core$Maybe$withDefault,
+			{earned_points: '', first_name: '', last_name: '', possible_points: '', test_id: '', test_title: ''},
+			$elm$core$List$head(records)));
 	return A2(
 		$elm$html$Html$div,
 		_List_Nil,
@@ -11040,7 +11040,7 @@ var $author$project$Main$showScoresTable = function (model) {
 							[
 								$elm$html$Html$text(testTitle)
 							])),
-						$author$project$Main$viewClassAverage(model.mockData)
+						$author$project$Main$viewClassAverage(records)
 					])),
 				A2(
 				$elm$html$Html$div,
