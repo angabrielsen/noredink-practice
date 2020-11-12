@@ -2,6 +2,7 @@ module ScoresTable exposing (showScoresTable, StudentRecord)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Round exposing (..)
 
 type alias StudentRecord = {
     first_name : String
@@ -69,13 +70,13 @@ viewRecord : StudentRecord -> Html msg
 viewRecord record =
     let
         average =
-            String.fromFloat(
-                ((String.toFloat(record.earned_points)
+            Round.round 0 (
+                (( String.toFloat(record.earned_points)
                     |> Maybe.withDefault 0)
                 /
                 (String.toFloat(record.possible_points)
-                    |> Maybe.withDefault 0 )
-                ) * 100 )
+                    |> Maybe.withDefault 0))
+                * 100 )
     in
     tr []
         [ td []
