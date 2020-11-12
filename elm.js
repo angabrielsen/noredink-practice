@@ -5695,67 +5695,49 @@ var $author$project$Main$showScoresTable = function (records) {
 					]))
 			]));
 };
-var $author$project$Main$viewTestChooser = A2(
-	$elm$html$Html$table,
-	_List_fromArray(
-		[
-			$elm$html$Html$Attributes$class('test-chooser-table')
-		]),
-	_List_fromArray(
-		[
-			A2(
-			$elm$html$Html$tr,
-			_List_Nil,
+var $author$project$Main$viewTestTitle = function (title) {
+	return A2(
+		$elm$html$Html$tr,
+		_List_Nil,
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text(title)
+					]))
+			]));
+};
+var $author$project$Main$viewTestChooser = function (records) {
+	var titles = _List_fromArray(
+		['A Tale of Two Cities', 'Harry Potter and the Chamber of Secrets', 'Moby Dick']);
+	return A2(
+		$elm$html$Html$table,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('test-chooser-table')
+			]),
+		_Utils_ap(
 			_List_fromArray(
 				[
 					A2(
-					$elm$html$Html$th,
+					$elm$html$Html$tr,
 					_List_Nil,
 					_List_fromArray(
 						[
-							$elm$html$Html$text('Choose a Test')
+							A2(
+							$elm$html$Html$th,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Choose a Test')
+								]))
 						]))
-				])),
-			A2(
-			$elm$html$Html$tr,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$td,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$elm$html$Html$text('I\'m a test')
-						]))
-				])),
-			A2(
-			$elm$html$Html$tr,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$td,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$elm$html$Html$text('I\'m a test')
-						]))
-				])),
-			A2(
-			$elm$html$Html$tr,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$td,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$elm$html$Html$text('I\'m a test')
-						]))
-				]))
-		]));
+				]),
+			A2($elm$core$List$map, $author$project$Main$viewTestTitle, titles)));
+};
 var $author$project$Main$view = function (model) {
 	return A2(
 		$elm$html$Html$div,
@@ -5769,7 +5751,9 @@ var $author$project$Main$view = function (model) {
 						$elm$html$Html$Attributes$class('test-chooser')
 					]),
 				_List_fromArray(
-					[$author$project$Main$viewTestChooser])),
+					[
+						$author$project$Main$viewTestChooser(model.mockData)
+					])),
 				A2(
 				$elm$html$Html$div,
 				_List_fromArray(

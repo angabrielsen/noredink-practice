@@ -9,7 +9,7 @@ view : Model -> Html Msg
 view model =
     div []
         [ div [ class "test-chooser" ]
-            [ viewTestChooser ]
+            [ viewTestChooser model.mockData ]
         , div [ class "test-results"]
             [ showScoresTable model.mockData ]
         ]
@@ -97,25 +97,27 @@ viewRecord record =
             [ text ( average ++ "%") ]
         ]
 
-viewTestChooser =
+viewTestChooser : List StudentRecord -> Html msg
+viewTestChooser records =
+    let
+        titles =
+            ["A Tale of Two Cities", "Harry Potter and the Chamber of Secrets", "Moby Dick"]
+    in
     table [ class "test-chooser-table" ]
-        [ tr []
+        ([ tr []
             [ th []
                 [ text "Choose a Test" ]
             ]
-        , tr []
-            [ td []
-                [ text "I'm a test" ]
-            ]
-        ,  tr []
-            [ td []
-                [ text "I'm a test" ]
-            ]
-        ,  tr []
-            [ td []
-                [ text "I'm a test" ]
-            ]
+        ] ++ List.map viewTestTitle titles)
+
+viewTestTitle : String -> Html msg
+viewTestTitle title =
+    tr []
+        [ td []
+            [ text title ]
         ]
+
+
 
 main : Program (List StudentRecord) Model Msg
 main =
