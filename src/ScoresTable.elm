@@ -68,14 +68,14 @@ viewTableHeader =
 viewRecord : StudentRecord -> Html msg
 viewRecord record =
     let
-        earned_points =
-            toFloat((String.toInt(record.earned_points) |> Maybe.withDefault 0))
-
-        possible_points =
-            toFloat((String.toInt(record.possible_points) |> Maybe.withDefault 0))
-
         average =
-            String.fromFloat((earned_points / possible_points) * 100)
+            String.fromFloat(
+                ((String.toFloat(record.earned_points)
+                    |> Maybe.withDefault 0)
+                /
+                (String.toFloat(record.possible_points)
+                    |> Maybe.withDefault 0 )
+                ) * 100 )
     in
     tr []
         [ td []
@@ -87,5 +87,5 @@ viewRecord record =
         , td []
             [ text record.earned_points ]
         , td []
-            [ text (average ++ "%") ]
+            [ text ( average ++ "%") ]
         ]
