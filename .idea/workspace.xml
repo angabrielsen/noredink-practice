@@ -3,13 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="2f00b4c1-3360-4f59-954d-6f7b332b30f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elm-stuff/0.19.1/HomePage.elmo" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/0.19.1/HomePage.elmo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elm-stuff/0.19.1/ScoresTable.elmi" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/0.19.1/ScoresTable.elmi" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elm-stuff/0.19.1/ScoresTable.elmo" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/0.19.1/ScoresTable.elmo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elm-stuff/0.19.1/d.dat" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/0.19.1/d.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elm-stuff/0.19.1/i.dat" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/0.19.1/i.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elm-stuff/0.19.1/o.dat" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/0.19.1/o.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elm.js" beforeDir="false" afterPath="$PROJECT_DIR$/elm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HomePage.elm" beforeDir="false" afterPath="$PROJECT_DIR$/src/HomePage.elm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ScoresTable.elm" beforeDir="false" afterPath="$PROJECT_DIR$/src/ScoresTable.elm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.elm" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.elm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ScoresTable.elm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestChooser.elm" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

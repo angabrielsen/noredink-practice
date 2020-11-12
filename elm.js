@@ -5241,7 +5241,7 @@ var $elm$core$Maybe$withDefault = F2(
 			return _default;
 		}
 	});
-var $author$project$ScoresTable$viewClassAverage = function (records) {
+var $author$project$Main$viewClassAverage = function (records) {
 	var classAverage = $elm$core$String$fromInt(
 		($elm$core$List$sum(
 			A2(
@@ -5552,7 +5552,7 @@ var $myrho$elm_round$Round$round = $myrho$elm_round$Round$roundFun(
 var $elm$html$Html$td = _VirtualDom_node('td');
 var $elm$core$String$toFloat = _String_toFloat;
 var $elm$html$Html$tr = _VirtualDom_node('tr');
-var $author$project$ScoresTable$viewRecord = function (record) {
+var $author$project$Main$viewRecord = function (record) {
 	var average = A2(
 		$myrho$elm_round$Round$round,
 		0,
@@ -5606,7 +5606,7 @@ var $author$project$ScoresTable$viewRecord = function (record) {
 			]));
 };
 var $elm$html$Html$th = _VirtualDom_node('th');
-var $author$project$ScoresTable$viewTableHeader = A2(
+var $author$project$Main$viewTableHeader = A2(
 	$elm$html$Html$tr,
 	_List_Nil,
 	_List_fromArray(
@@ -5647,7 +5647,7 @@ var $author$project$ScoresTable$viewTableHeader = A2(
 					$elm$html$Html$text('Average')
 				]))
 		]));
-var $author$project$ScoresTable$showScoresTable = function (records) {
+var $author$project$Main$showScoresTable = function (records) {
 	var testTitle = function (record) {
 		return record.test_title;
 	}(
@@ -5675,7 +5675,7 @@ var $author$project$ScoresTable$showScoresTable = function (records) {
 							[
 								$elm$html$Html$text(testTitle)
 							])),
-						$author$project$ScoresTable$viewClassAverage(records)
+						$author$project$Main$viewClassAverage(records)
 					])),
 				A2(
 				$elm$html$Html$div,
@@ -5690,12 +5690,12 @@ var $author$project$ScoresTable$showScoresTable = function (records) {
 						_List_Nil,
 						_Utils_ap(
 							_List_fromArray(
-								[$author$project$ScoresTable$viewTableHeader]),
-							A2($elm$core$List$map, $author$project$ScoresTable$viewRecord, records)))
+								[$author$project$Main$viewTableHeader]),
+							A2($elm$core$List$map, $author$project$Main$viewRecord, records)))
 					]))
 			]));
 };
-var $author$project$TestChooser$viewTestChooser = A2(
+var $author$project$Main$viewTestChooser = A2(
 	$elm$html$Html$table,
 	_List_fromArray(
 		[
@@ -5769,7 +5769,7 @@ var $author$project$Main$view = function (model) {
 						$elm$html$Html$Attributes$class('test-chooser')
 					]),
 				_List_fromArray(
-					[$author$project$TestChooser$viewTestChooser])),
+					[$author$project$Main$viewTestChooser])),
 				A2(
 				$elm$html$Html$div,
 				_List_fromArray(
@@ -5778,7 +5778,7 @@ var $author$project$Main$view = function (model) {
 					]),
 				_List_fromArray(
 					[
-						$author$project$ScoresTable$showScoresTable(model.mockData)
+						$author$project$Main$showScoresTable(model.mockData)
 					]))
 			]));
 };
