@@ -41,11 +41,14 @@ showScoresTable records =
 viewClassAverage : List StudentRecord -> Html msg
 viewClassAverage records =
     let
-        allEarnedPoints =
-            List.sum (List.map (\record -> String.toInt(record.earned_points) |> Maybe.withDefault 0) records)
-
         classAverage =
-            allEarnedPoints // (List.length records)
+            (List.sum
+                (List.map
+                    (\record ->
+                        String.toInt(record.earned_points)
+                            |> Maybe.withDefault 0) records))
+                        //
+                        (List.length records)
     in
     div []
         [ p [] [ text "Class average:"]
