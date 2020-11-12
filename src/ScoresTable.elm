@@ -42,17 +42,18 @@ viewClassAverage : List StudentRecord -> Html msg
 viewClassAverage records =
     let
         classAverage =
-            (List.sum
-                (List.map
-                    (\record ->
-                        String.toInt(record.earned_points)
-                            |> Maybe.withDefault 0) records))
-                        //
-                        (List.length records)
+            String.fromInt(
+                (List.sum
+                    (List.map
+                        (\record ->
+                            String.toInt(record.earned_points)
+                               |> Maybe.withDefault 0) records))
+                            //
+                            (List.length records))
     in
     div []
         [ p [] [ text "Class average:"]
-        , h1 [] [ text ((String.fromInt(classAverage)) ++ "%") ] ]
+        , h1 [] [ text ( classAverage ++ "%") ] ]
 
 viewTableHeader : Html msg
 viewTableHeader =
