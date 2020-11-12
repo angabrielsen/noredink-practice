@@ -5695,6 +5695,7 @@ var $author$project$Main$showScoresTable = function (records) {
 					]))
 			]));
 };
+var $elm$html$Html$a = _VirtualDom_node('a');
 var $author$project$Main$viewTestTitle = function (title) {
 	return A2(
 		$elm$html$Html$tr,
@@ -5702,7 +5703,7 @@ var $author$project$Main$viewTestTitle = function (title) {
 		_List_fromArray(
 			[
 				A2(
-				$elm$html$Html$td,
+				$elm$html$Html$a,
 				_List_Nil,
 				_List_fromArray(
 					[

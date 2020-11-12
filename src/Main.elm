@@ -113,7 +113,7 @@ viewTestChooser records =
 viewTestTitle : String -> Html msg
 viewTestTitle title =
     tr []
-        [ td []
+        [ a []
             [ text title ]
         ]
 
