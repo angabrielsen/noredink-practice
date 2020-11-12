@@ -25,7 +25,8 @@ main =
         }
 
 type alias Model =
-    { mockData : List StudentRecord }
+    { mockData : List StudentRecord
+    , whichTest : String }
 
 
 type alias StudentRecord =
@@ -38,15 +39,19 @@ type alias StudentRecord =
 
 init : List StudentRecord -> ( Model, Cmd Msg )
 init mockData =
-    ( { mockData = mockData }
+    ( { mockData = mockData
+      , whichTest = "" }
     , Cmd.none
     )
 
-type Msg = NoOp
+type Msg
+    = WhichTest
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update _ model =
-        (model, Cmd.none )
+update msg model =
+        case msg of
+            WhichTest ->
+                ( { model | whichTest = "string" }, Cmd.none )
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
