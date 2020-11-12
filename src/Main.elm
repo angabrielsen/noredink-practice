@@ -4,21 +4,37 @@ import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Round exposing (..)
+import Html.Events exposing (onClick)
 
 view : Model -> Html Msg
 view model =
     div []
         [ div [ class "test-chooser" ]
-            [ viewTestChooser model.mockData ]
+            [ viewTestChooser ]
         , div [ class "test-results"]
-            [ showScoresTable model.mockData ]
+            [ showScoresTable model ]
         ]
 
-showScoresTable : List StudentRecord -> Html msg
-showScoresTable records =
+showScoresTable : Model -> Html msg
+showScoresTable model =
     let
+        records =
+            case model.whichTest of
+                "1" ->
+                    List.filter (\record -> record.test_id == "1") model.mockData
+
+                "2" ->
+                    List.filter (\record -> record.test_id == "2") model.mockData
+
+                "3" ->
+                    List.filter (\record -> record.test_id == "3") model.mockData
+
+                _ ->
+                    List.filter (\record -> record.test_id == "1") model.mockData
+
+
         testTitle =
-            records
+            model.mockData
                 |> List.head
                 |> Maybe.withDefault {
                      first_name = ""
@@ -26,13 +42,14 @@ showScoresTable records =
                      , possible_points = ""
                      , earned_points = ""
                      , test_title = ""
+                     , test_id = ""
                  }
                 |> (\record -> record.test_title)
     in
     div []
         [ div [ class "jumbotron" ]
             [ h1 [] [ text testTitle ]
-            , viewClassAverage records ]
+            , viewClassAverage model.mockData ]
         , div [ class "class-scores" ]
             [ table []
                 ([viewTableHeader] ++ List.map viewRecord records)
@@ -97,27 +114,19 @@ viewRecord record =
             [ text ( average ++ "%") ]
         ]
 
-viewTestChooser : List StudentRecord -> Html msg
-viewTestChooser records =
-    let
-        titles =
-            ["A Tale of Two Cities", "Harry Potter and the Chamber of Secrets", "Moby Dick"]
-    in
+viewTestChooser =
     table [ class "test-chooser-table" ]
-        ([ tr []
+        [ tr []
             [ th []
                 [ text "Choose a Test" ]
             ]
-        ] ++ List.map viewTestTitle titles)
-
-viewTestTitle : String -> Html msg
-viewTestTitle title =
-    tr []
-        [ a []
-            [ text title ]
+        , tr []
+            [ a [ id "1", onClick ( WhichTest "1" ) ] [ text "A Tale of Two Cities" ] ]
+        , tr []
+            [ a [ id "2", onClick ( WhichTest "2" ) ] [ text "Harry Potter and the Chamber of Secrets" ] ]
+        , tr []
+            [ a [ id "3", onClick ( WhichTest "3" ) ] [ text "Moby Dick" ] ]
         ]
-
-
 
 main : Program (List StudentRecord) Model Msg
 main =
@@ -139,6 +148,7 @@ type alias StudentRecord =
     , possible_points : String
     , earned_points : String
     , test_title : String
+    , test_id : String
     }
 
 init : List StudentRecord -> ( Model, Cmd Msg )
@@ -149,13 +159,13 @@ init mockData =
     )
 
 type Msg
-    = WhichTest
+    = WhichTest String
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
         case msg of
-            WhichTest ->
-                ( { model | whichTest = "string" }, Cmd.none )
+            WhichTest testId ->
+                ( { model | whichTest = testId }, Cmd.none )
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
