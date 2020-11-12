@@ -5,17 +5,48 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <style>
+        .test-chooser {
+            background-color: rgba(36, 64, 174, 1);
+            height: 100vw;
+            float: left;
+            width: 25%;
+        }
+
+        .test-chooser table {
+            background-color: rgba(255, 255, 255, 0.7);
+            margin: 24px auto;
+            width: 75%;
+        }
+
+        .test-chooser tr th {
+            text-align: center;
+        }
+
+        .class-scores {
+            float: right;
+            width: 75%;
+        }
+
         .jumbotron {
-            background-color: #e6ffe6;
+            background-color: rgba(26, 64, 174, 0.2);
             text-align: center;
         }
 
         .class-scores table {
             margin: 0 auto;
+            width: 100%;
+        }
+
+        .class-scores table tr {
+            width: 20%;
+        }
+        
+        .class-scores table tr td:nth-last-child(-n+3) {
+            text-align: center;
         }
 
         .class-scores tr:nth-child(odd) {
-            background-color: #e6ffe6;
+            background-color: rgba(26, 64, 174, 0.2);
         }
 
         .class-scores tr th {
@@ -51,7 +82,7 @@
     function setFlags(data) {
         mockDataFlag = data;
 
-        var app = Elm.HomePage.init({
+        var app = Elm.Main.init({
             node: document.getElementById("elm-app-is-loaded-here"),
             flags: mockDataFlag
         });
