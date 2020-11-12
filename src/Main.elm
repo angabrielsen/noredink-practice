@@ -17,44 +17,50 @@ view model =
 
 showScoresTable : Model -> Html msg
 showScoresTable model =
-    let
-        records =
-            case model.whichTest of
-                "1" ->
-                    List.filter (\record -> record.test_id == "1") model.mockData
-
-                "2" ->
-                    List.filter (\record -> record.test_id == "2") model.mockData
-
-                "3" ->
-                    List.filter (\record -> record.test_id == "3") model.mockData
-
-                _ ->
-                    List.filter (\record -> record.test_id == "1") model.mockData
-
-
-        testTitle =
-            records
-                |> List.head
-                |> Maybe.withDefault {
-                     first_name = ""
-                     , last_name = ""
-                     , possible_points = ""
-                     , earned_points = ""
-                     , test_title = ""
-                     , test_id = ""
-                 }
-                |> (\record -> record.test_title)
-    in
-    div []
-        [ div [ class "jumbotron" ]
-            [ h1 [] [ text testTitle ]
-            , viewClassAverage records ]
-        , div [ class "class-scores" ]
-            [ table []
-                ([viewTableHeader] ++ List.map viewRecord records)
-                ]
+    if model.whichTest == "" then
+        div []
+            [ div [ class "jumbotron" ]
+                [ h1 [] [ text "Choose a test from the list on the right" ] ]
             ]
+    else
+        let
+            records =
+                case model.whichTest of
+                    "1" ->
+                        List.filter (\record -> record.test_id == "1") model.mockData
+
+                    "2" ->
+                        List.filter (\record -> record.test_id == "2") model.mockData
+
+                    "3" ->
+                        List.filter (\record -> record.test_id == "3") model.mockData
+
+                    _ ->
+                        []
+
+
+            testTitle =
+                records
+                    |> List.head
+                    |> Maybe.withDefault {
+                         first_name = ""
+                         , last_name = ""
+                         , possible_points = ""
+                         , earned_points = ""
+                         , test_title = ""
+                         , test_id = ""
+                     }
+                    |> (\record -> record.test_title)
+        in
+        div []
+            [ div [ class "jumbotron" ]
+                [ h1 [] [ text testTitle ]
+                , viewClassAverage records ]
+            , div [ class "class-scores" ]
+                [ table []
+                    ([viewTableHeader] ++ List.map viewRecord records)
+                    ]
+                ]
 
 
 viewClassAverage : List StudentRecord -> Html msg
@@ -121,11 +127,23 @@ viewTestChooser =
                 [ text "Choose a Test" ]
             ]
         , tr []
-            [ a [ id "1", onClick ( WhichTest "1" ) ] [ text "A Tale of Two Cities" ] ]
+            [ td []
+                [ a [ id "1", onClick ( WhichTest "1" ) ]
+                    [ text "A Tale of Two Cities" ]
+                ]
+            ]
         , tr []
-            [ a [ id "2", onClick ( WhichTest "2" ) ] [ text "Harry Potter and the Chamber of Secrets" ] ]
+            [ td []
+                [ a [ id "2", onClick ( WhichTest "2" ) ]
+                    [ text "Harry Potter and the Chamber of Secrets" ]
+                ]
+            ]
         , tr []
-            [ a [ id "3", onClick ( WhichTest "3" ) ] [ text "Moby Dick" ] ]
+            [ td []
+                [ a [ id "3", onClick ( WhichTest "3" ) ]
+                    [ text "Moby Dick" ]
+                ]
+            ]
         ]
 
 main : Program (List StudentRecord) Model Msg
