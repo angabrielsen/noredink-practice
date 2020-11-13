@@ -4,7 +4,8 @@ import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Round exposing (..)
-import Html.Events exposing (onClick)
+import ViewTestChooser exposing (viewTestChooser)
+import Msg exposing (Msg)
 
 view : Model -> Html Msg
 view model =
@@ -120,32 +121,6 @@ viewRecord record =
             [ text ( average ++ "%") ]
         ]
 
-viewTestChooser =
-    table [ class "test-chooser-table" ]
-        [ tr []
-            [ th []
-                [ text "Choose a Test" ]
-            ]
-        , tr []
-            [ td []
-                [ a [ id "1", onClick ( WhichTest "1" ) ]
-                    [ text "A Tale of Two Cities" ]
-                ]
-            ]
-        , tr []
-            [ td []
-                [ a [ id "2", onClick ( WhichTest "2" ) ]
-                    [ text "Harry Potter and the Chamber of Secrets" ]
-                ]
-            ]
-        , tr []
-            [ td []
-                [ a [ id "3", onClick ( WhichTest "3" ) ]
-                    [ text "Moby Dick" ]
-                ]
-            ]
-        ]
-
 main : Program (List StudentRecord) Model Msg
 main =
     Browser.element
@@ -176,13 +151,10 @@ init mockData =
     , Cmd.none
     )
 
-type Msg
-    = WhichTest String
-
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
         case msg of
-            WhichTest testId ->
+            Msg.WhichTest testId ->
                 ( { model | whichTest = testId }, Cmd.none )
 
 subscriptions : Model -> Sub Msg
