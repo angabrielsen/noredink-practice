@@ -3,10 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="2f00b4c1-3360-4f59-954d-6f7b332b30f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elm-stuff/0.19.1/Main.elmi" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/0.19.1/Main.elmi" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elm-stuff/0.19.1/Main.elmo" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/0.19.1/Main.elmo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elm-stuff/0.19.1/d.dat" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/0.19.1/d.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elm-stuff/generated-code/elm-community/elm-test/0.19.1-revision4/elm-stuff/0.19.1/d.dat" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/generated-code/elm-community/elm-test/0.19.1-revision4/elm-stuff/0.19.1/d.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elm-stuff/generated-code/elm-community/elm-test/0.19.1-revision4/elm-stuff/0.19.1/i.dat" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/generated-code/elm-community/elm-test/0.19.1-revision4/elm-stuff/0.19.1/i.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elm-stuff/generated-code/elm-community/elm-test/0.19.1-revision4/elm-stuff/0.19.1/o.dat" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/generated-code/elm-community/elm-test/0.19.1-revision4/elm-stuff/0.19.1/o.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elm-stuff/generated-code/elm-community/elm-test/0.19.1-revision4/elm.json" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/generated-code/elm-community/elm-test/0.19.1-revision4/elm.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elm-stuff/generated-code/elm-community/elm-test/0.19.1-revision4/elmTestOutput.js" beforeDir="false" afterPath="$PROJECT_DIR$/elm-stuff/generated-code/elm-community/elm-test/0.19.1-revision4/elmTestOutput.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elm.js" beforeDir="false" afterPath="$PROJECT_DIR$/elm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.elm" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.elm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewScoresTable.elm" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewScoresTable.elm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Example.elm" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +72,7 @@
       <option name="presentableId" value="Default" />
       <updated>1605036703474</updated>
       <workItem from="1605036704730" duration="20057000" />
+      <workItem from="1605228997521" duration="967000" />
     </task>
     <servers />
   </component>

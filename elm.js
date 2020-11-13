@@ -10581,7 +10581,7 @@ var $elm$html$Html$table = _VirtualDom_node('table');
 var $elm$core$List$sum = function (numbers) {
 	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
 };
-var $author$project$Main$viewClassAverage = function (records) {
+var $author$project$ViewScoresTable$viewClassAverage = function (records) {
 	var classAverage = $elm$core$String$fromInt(
 		($elm$core$List$sum(
 			A2(
@@ -10881,20 +10881,24 @@ var $myrho$elm_round$Round$round = $myrho$elm_round$Round$roundFun(
 				}
 			}
 		}));
-var $elm$html$Html$td = _VirtualDom_node('td');
 var $elm$core$String$toFloat = _String_toFloat;
+var $author$project$ViewScoresTable$averageGrade = F2(
+	function (earnedPoints, possiblePoints) {
+		return A2(
+			$myrho$elm_round$Round$round,
+			0,
+			(A2(
+				$elm$core$Maybe$withDefault,
+				0,
+				$elm$core$String$toFloat(earnedPoints)) / A2(
+				$elm$core$Maybe$withDefault,
+				0,
+				$elm$core$String$toFloat(possiblePoints))) * 100);
+	});
+var $elm$html$Html$td = _VirtualDom_node('td');
 var $elm$html$Html$tr = _VirtualDom_node('tr');
-var $author$project$Main$viewRecord = function (record) {
-	var average = A2(
-		$myrho$elm_round$Round$round,
-		0,
-		(A2(
-			$elm$core$Maybe$withDefault,
-			0,
-			$elm$core$String$toFloat(record.earned_points)) / A2(
-			$elm$core$Maybe$withDefault,
-			0,
-			$elm$core$String$toFloat(record.possible_points))) * 100);
+var $author$project$ViewScoresTable$viewRecord = function (record) {
+	var average = A2($author$project$ViewScoresTable$averageGrade, record.earned_points, record.possible_points);
 	return A2(
 		$elm$html$Html$tr,
 		_List_Nil,
@@ -10938,7 +10942,7 @@ var $author$project$Main$viewRecord = function (record) {
 			]));
 };
 var $elm$html$Html$th = _VirtualDom_node('th');
-var $author$project$Main$viewTableHeader = A2(
+var $author$project$ViewScoresTable$viewTableHeader = A2(
 	$elm$html$Html$tr,
 	_List_Nil,
 	_List_fromArray(
@@ -10979,91 +10983,111 @@ var $author$project$Main$viewTableHeader = A2(
 					$elm$html$Html$text('Average')
 				]))
 		]));
-var $author$project$Main$showScoresTable = function (model) {
-	var records = function () {
-		var _v0 = model.whichTest;
-		switch (_v0) {
-			case '1':
-				return A2(
-					$elm$core$List$filter,
-					function (record) {
-						return record.test_id === '1';
-					},
-					model.mockData);
-			case '2':
-				return A2(
-					$elm$core$List$filter,
-					function (record) {
-						return record.test_id === '2';
-					},
-					model.mockData);
-			case '3':
-				return A2(
-					$elm$core$List$filter,
-					function (record) {
-						return record.test_id === '3';
-					},
-					model.mockData);
-			default:
-				return A2(
-					$elm$core$List$filter,
-					function (record) {
-						return record.test_id === '1';
-					},
-					model.mockData);
-		}
-	}();
-	var testTitle = function (record) {
-		return record.test_title;
-	}(
-		A2(
-			$elm$core$Maybe$withDefault,
-			{earned_points: '', first_name: '', last_name: '', possible_points: '', test_id: '', test_title: ''},
-			$elm$core$List$head(records)));
-	return A2(
-		$elm$html$Html$div,
-		_List_Nil,
-		_List_fromArray(
-			[
-				A2(
-				$elm$html$Html$div,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$class('jumbotron')
-					]),
-				_List_fromArray(
-					[
-						A2(
-						$elm$html$Html$h1,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$elm$html$Html$text(testTitle)
-							])),
-						$author$project$Main$viewClassAverage(records)
-					])),
-				A2(
-				$elm$html$Html$div,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$class('class-scores')
-					]),
-				_List_fromArray(
-					[
-						A2(
-						$elm$html$Html$table,
-						_List_Nil,
-						_Utils_ap(
+var $author$project$ViewScoresTable$viewScoresTable = function (model) {
+	if (model.whichTest === '') {
+		return A2(
+			$elm$html$Html$div,
+			_List_Nil,
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('jumbotron')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$h1,
+							_List_Nil,
 							_List_fromArray(
-								[$author$project$Main$viewTableHeader]),
-							A2($elm$core$List$map, $author$project$Main$viewRecord, records)))
-					]))
-			]));
+								[
+									$elm$html$Html$text('Choose a test from the list on the right')
+								]))
+						]))
+				]));
+	} else {
+		var records = function () {
+			var _v0 = model.whichTest;
+			switch (_v0) {
+				case '1':
+					return A2(
+						$elm$core$List$filter,
+						function (record) {
+							return record.test_id === '1';
+						},
+						model.mockData);
+				case '2':
+					return A2(
+						$elm$core$List$filter,
+						function (record) {
+							return record.test_id === '2';
+						},
+						model.mockData);
+				case '3':
+					return A2(
+						$elm$core$List$filter,
+						function (record) {
+							return record.test_id === '3';
+						},
+						model.mockData);
+				default:
+					return _List_Nil;
+			}
+		}();
+		var testTitle = function (record) {
+			return record.test_title;
+		}(
+			A2(
+				$elm$core$Maybe$withDefault,
+				{earned_points: '', first_name: '', last_name: '', possible_points: '', test_id: '', test_title: ''},
+				$elm$core$List$head(records)));
+		return A2(
+			$elm$html$Html$div,
+			_List_Nil,
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('jumbotron')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$h1,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$elm$html$Html$text(testTitle)
+								])),
+							$author$project$ViewScoresTable$viewClassAverage(records)
+						])),
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('class-scores')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$table,
+							_List_Nil,
+							_Utils_ap(
+								_List_fromArray(
+									[$author$project$ViewScoresTable$viewTableHeader]),
+								A2($elm$core$List$map, $author$project$ViewScoresTable$viewRecord, records)))
+						]))
+				]));
+	}
 };
-var $author$project$Main$WhichTest = function (a) {
+var $author$project$Msg$WhichTest = function (a) {
 	return {$: 'WhichTest', a: a};
 };
-var $author$project$Main$viewTestChooser = A2(
+var $author$project$ViewTestChooser$viewTestChooser = A2(
 	$elm$html$Html$table,
 	_List_fromArray(
 		[
@@ -11090,16 +11114,22 @@ var $author$project$Main$viewTestChooser = A2(
 			_List_fromArray(
 				[
 					A2(
-					$elm$html$Html$a,
+					$elm$html$Html$td,
+					_List_Nil,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$id('1'),
-							$elm$html$Html$Events$onClick(
-							$author$project$Main$WhichTest('1'))
-						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text('A Tale of Two Cities')
+							A2(
+							$elm$html$Html$a,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$id('1'),
+									$elm$html$Html$Events$onClick(
+									$author$project$Msg$WhichTest('1'))
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text('A Tale of Two Cities')
+								]))
 						]))
 				])),
 			A2(
@@ -11108,16 +11138,22 @@ var $author$project$Main$viewTestChooser = A2(
 			_List_fromArray(
 				[
 					A2(
-					$elm$html$Html$a,
+					$elm$html$Html$td,
+					_List_Nil,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$id('2'),
-							$elm$html$Html$Events$onClick(
-							$author$project$Main$WhichTest('2'))
-						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text('Harry Potter and the Chamber of Secrets')
+							A2(
+							$elm$html$Html$a,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$id('2'),
+									$elm$html$Html$Events$onClick(
+									$author$project$Msg$WhichTest('2'))
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Harry Potter and the Chamber of Secrets')
+								]))
 						]))
 				])),
 			A2(
@@ -11126,16 +11162,22 @@ var $author$project$Main$viewTestChooser = A2(
 			_List_fromArray(
 				[
 					A2(
-					$elm$html$Html$a,
+					$elm$html$Html$td,
+					_List_Nil,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$id('3'),
-							$elm$html$Html$Events$onClick(
-							$author$project$Main$WhichTest('3'))
-						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text('Moby Dick')
+							A2(
+							$elm$html$Html$a,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$id('3'),
+									$elm$html$Html$Events$onClick(
+									$author$project$Msg$WhichTest('3'))
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Moby Dick')
+								]))
 						]))
 				]))
 		]));
@@ -11152,7 +11194,7 @@ var $author$project$Main$view = function (model) {
 						$elm$html$Html$Attributes$class('test-chooser')
 					]),
 				_List_fromArray(
-					[$author$project$Main$viewTestChooser])),
+					[$author$project$ViewTestChooser$viewTestChooser])),
 				A2(
 				$elm$html$Html$div,
 				_List_fromArray(
@@ -11161,7 +11203,7 @@ var $author$project$Main$view = function (model) {
 					]),
 				_List_fromArray(
 					[
-						$author$project$Main$showScoresTable(model)
+						$author$project$ViewScoresTable$viewScoresTable(model)
 					]))
 			]));
 };
@@ -11200,4 +11242,4 @@ _Platform_export({'Main':{'init':$author$project$Main$main(
 					},
 					A2($elm$json$Json$Decode$field, 'test_id', $elm$json$Json$Decode$string));
 			},
-			A2($elm$json$Json$Decode$field, 'test_title', $elm$json$Json$Decode$string))))({"versions":{"elm":"0.19.1"},"types":{"message":"Main.Msg","aliases":{},"unions":{"Main.Msg":{"args":[],"tags":{"WhichTest":["String.String"]}},"String.String":{"args":[],"tags":{"String":[]}}}}})}});}(this));
+			A2($elm$json$Json$Decode$field, 'test_title', $elm$json$Json$Decode$string))))({"versions":{"elm":"0.19.1"},"types":{"message":"Msg.Msg","aliases":{},"unions":{"Msg.Msg":{"args":[],"tags":{"WhichTest":["String.String"]}},"String.String":{"args":[],"tags":{"String":[]}}}}})}});}(this));

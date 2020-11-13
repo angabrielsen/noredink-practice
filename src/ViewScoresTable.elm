@@ -1,4 +1,4 @@
-module ViewScoresTable exposing (viewScoresTable)
+module ViewScoresTable exposing (viewScoresTable, averageGrade)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -97,16 +97,17 @@ viewRecord : StudentRecord -> Html msg
 viewRecord record =
     let
         average =
-            Round.round 0
-                (((String.toFloat record.earned_points
-                    |> Maybe.withDefault 0
-                  )
-                    / (String.toFloat record.possible_points
-                        |> Maybe.withDefault 0
-                      )
-                 )
-                    * 100
-                )
+            averageGrade record.earned_points record.possible_points
+            --Round.round 0
+            --    (((String.toFloat record.earned_points
+            --        |> Maybe.withDefault 0
+            --      )
+            --        / (String.toFloat record.possible_points
+            --            |> Maybe.withDefault 0
+            --          )
+            --     )
+            --        * 100
+            --    )
     in
     tr []
         [ td []
@@ -120,3 +121,16 @@ viewRecord record =
         , td []
             [ text (average ++ "%") ]
         ]
+
+averageGrade : String -> String -> String
+averageGrade  earnedPoints possiblePoints =
+    Round.round 0
+        (((String.toFloat earnedPoints
+            |> Maybe.withDefault 0
+          )
+            / (String.toFloat possiblePoints
+                |> Maybe.withDefault 0
+              )
+         )
+            * 100
+        )
