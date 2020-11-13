@@ -1,12 +1,15 @@
-module Msg exposing (Msg(..), StudentRecord, Model)
+module Msg exposing (Model, Msg(..), StudentRecord)
 
 
 type alias Model =
     { mockData : List StudentRecord
-    , whichTest : String }
+    , whichTest : String
+    }
+
 
 type Msg
     = WhichTest String
+
 
 type alias StudentRecord =
     { first_name : String

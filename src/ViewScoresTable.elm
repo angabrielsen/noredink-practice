@@ -2,8 +2,9 @@ module ViewScoresTable exposing (viewScoresTable)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Msg exposing (StudentRecord, Model)
+import Msg exposing (Model, StudentRecord)
 import Round exposing (round)
+
 
 viewScoresTable : Model -> Html msg
 viewScoresTable model =
@@ -12,6 +13,7 @@ viewScoresTable model =
             [ div [ class "jumbotron" ]
                 [ h1 [] [ text "Choose a test from the list on the right" ] ]
             ]
+
     else
         let
             records =
@@ -28,47 +30,52 @@ viewScoresTable model =
                     _ ->
                         []
 
-
             testTitle =
                 records
                     |> List.head
-                    |> Maybe.withDefault {
-                         first_name = ""
-                         , last_name = ""
-                         , possible_points = ""
-                         , earned_points = ""
-                         , test_title = ""
-                         , test_id = ""
-                     }
+                    |> Maybe.withDefault
+                        { first_name = ""
+                        , last_name = ""
+                        , possible_points = ""
+                        , earned_points = ""
+                        , test_title = ""
+                        , test_id = ""
+                        }
                     |> (\record -> record.test_title)
         in
         div []
             [ div [ class "jumbotron" ]
                 [ h1 [] [ text testTitle ]
-                , viewClassAverage records ]
+                , viewClassAverage records
+                ]
             , div [ class "class-scores" ]
                 [ table []
-                    ([viewTableHeader] ++ List.map viewRecord records)
-                    ]
+                    ([ viewTableHeader ] ++ List.map viewRecord records)
                 ]
+            ]
 
 
 viewClassAverage : List StudentRecord -> Html msg
 viewClassAverage records =
     let
         classAverage =
-            String.fromInt(
+            String.fromInt
                 (List.sum
                     (List.map
                         (\record ->
-                            String.toInt(record.earned_points)
-                               |> Maybe.withDefault 0) records))
-                            //
-                            (List.length records))
+                            String.toInt record.earned_points
+                                |> Maybe.withDefault 0
+                        )
+                        records
+                    )
+                    // List.length records
+                )
     in
     div []
-        [ p [] [ text "Class average:"]
-        , h1 [] [ text ( classAverage ++ "%") ] ]
+        [ p [] [ text "Class average:" ]
+        , h1 [] [ text (classAverage ++ "%") ]
+        ]
+
 
 viewTableHeader : Html msg
 viewTableHeader =
@@ -85,17 +92,21 @@ viewTableHeader =
             [ text "Average" ]
         ]
 
+
 viewRecord : StudentRecord -> Html msg
 viewRecord record =
     let
         average =
-            Round.round 0 (
-                (( String.toFloat(record.earned_points)
-                    |> Maybe.withDefault 0)
-                /
-                (String.toFloat(record.possible_points)
-                    |> Maybe.withDefault 0))
-                * 100 )
+            Round.round 0
+                (((String.toFloat record.earned_points
+                    |> Maybe.withDefault 0
+                  )
+                    / (String.toFloat record.possible_points
+                        |> Maybe.withDefault 0
+                      )
+                 )
+                    * 100
+                )
     in
     tr []
         [ td []
@@ -107,5 +118,5 @@ viewRecord record =
         , td []
             [ text record.earned_points ]
         , td []
-            [ text ( average ++ "%") ]
+            [ text (average ++ "%") ]
         ]
