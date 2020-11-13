@@ -10581,8 +10581,8 @@ var $elm$html$Html$table = _VirtualDom_node('table');
 var $elm$core$List$sum = function (numbers) {
 	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
 };
-var $author$project$ViewScoresTable$viewClassAverage = function (records) {
-	var classAverage = $elm$core$String$fromInt(
+var $author$project$ViewScoresTable$averageClassGrade = function (records) {
+	return $elm$core$String$fromInt(
 		($elm$core$List$sum(
 			A2(
 				$elm$core$List$map,
@@ -10593,6 +10593,9 @@ var $author$project$ViewScoresTable$viewClassAverage = function (records) {
 						$elm$core$String$toInt(record.earned_points));
 				},
 				records)) / $elm$core$List$length(records)) | 0);
+};
+var $author$project$ViewScoresTable$viewClassAverage = function (records) {
+	var classAverage = $author$project$ViewScoresTable$averageClassGrade(records);
 	return A2(
 		$elm$html$Html$div,
 		_List_Nil,

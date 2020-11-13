@@ -1,4 +1,4 @@
-module ViewScoresTable exposing (viewScoresTable, averageGrade)
+module ViewScoresTable exposing (viewScoresTable, averageGrade, averageClassGrade)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -59,22 +59,26 @@ viewClassAverage : List StudentRecord -> Html msg
 viewClassAverage records =
     let
         classAverage =
-            String.fromInt
-                (List.sum
-                    (List.map
-                        (\record ->
-                            String.toInt record.earned_points
-                                |> Maybe.withDefault 0
-                        )
-                        records
-                    )
-                    // List.length records
-                )
+            averageClassGrade records
     in
     div []
         [ p [] [ text "Class average:" ]
         , h1 [] [ text (classAverage ++ "%") ]
         ]
+
+averageClassGrade : List StudentRecord -> String
+averageClassGrade records =
+    String.fromInt
+        (List.sum
+            (List.map
+                (\record ->
+                    String.toInt record.earned_points
+                        |> Maybe.withDefault 0
+                )
+                records
+            )
+            // List.length records
+        )
 
 
 viewTableHeader : Html msg
@@ -98,16 +102,6 @@ viewRecord record =
     let
         average =
             averageGrade record.earned_points record.possible_points
-            --Round.round 0
-            --    (((String.toFloat record.earned_points
-            --        |> Maybe.withDefault 0
-            --      )
-            --        / (String.toFloat record.possible_points
-            --            |> Maybe.withDefault 0
-            --          )
-            --     )
-            --        * 100
-            --    )
     in
     tr []
         [ td []
