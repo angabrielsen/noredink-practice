@@ -13,11 +13,11 @@ view model =
         [ div [ class "test-chooser" ]
             [ viewTestChooser ]
         , div [ class "test-results"]
-            [ showScoresTable model ]
+            [ viewScoresTable model ]
         ]
 
-showScoresTable : Model -> Html msg
-showScoresTable model =
+viewScoresTable : Model -> Html msg
+viewScoresTable model =
     if model.whichTest == "" then
         div []
             [ div [ class "jumbotron" ]
